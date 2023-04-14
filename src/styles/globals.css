@@ -9,3 +9,16 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
+
+/* CSS */
+.default-input:focus ~ label,
+.default-input:not(:placeholder-shown) ~ label {
+  transform: translate(0, -160%);
+  background-color: white;
+  color: #6b7280;
+}
+
+.default-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.05);
+}

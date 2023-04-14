@@ -111,7 +111,16 @@ module.exports = {
             transform: `translateY(calc(100% + 1rem))`,
           },
         },
+        "accordion-down": {
+          from: { height: 0 },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: 0 },
+        },
       },
+
       animation: {
         // Dropdown menu
         "scale-in": "scale-in 0.2s ease-in-out",
@@ -140,8 +149,11 @@ module.exports = {
           "toast-slide-in-bottom 150ms cubic-bezier(0.16, 1, 0.3, 1)",
         "toast-swipe-out-x": "toast-swipe-out-x 100ms ease-out forwards",
         "toast-swipe-out-y": "toast-swipe-out-y 100ms ease-out forwards",
+        //accordion
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
   },
-  plugins: [require("tailwindcss-radix")()],
+  plugins: [require("tailwindcss-radix")(), require("tailwindcss-animate")],
 };
