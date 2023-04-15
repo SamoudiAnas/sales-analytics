@@ -2,6 +2,7 @@ import * as React from "react";
 import { VariantProps, cva } from "class-variance-authority";
 
 import clsx from "clsx";
+import { Loader } from "../Loader";
 
 const buttonVariants = cva(
   "inline-flex items-center gap-2  justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 dark:hover:bg-slate-800 dark:hover:text-slate-100 disabled:opacity-50 dark:focus:ring-slate-400 disabled:pointer-events-none dark:focus:ring-offset-slate-900 data-[state=open]:bg-slate-100 dark:data-[state=open]:bg-slate-800",
@@ -38,17 +39,31 @@ export interface ButtonProps
   children: React.ReactNode;
   withIcon?: boolean;
   Icon?: JSX.Element;
+  isLoading?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, children, withIcon, Icon, ...props }, ref) => {
+  (
+    {
+      className,
+      variant,
+      size,
+      children,
+      withIcon,
+      Icon,
+      isLoading = true,
+      ...props
+    },
+    ref
+  ) => {
     return (
       <button
         className={clsx(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
       >
-        {withIcon && Icon}
+        {!isLoading && withIcon && Icon}
+        {isLoading && <Loader />}
         {children}
       </button>
     );

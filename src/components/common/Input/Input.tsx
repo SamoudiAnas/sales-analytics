@@ -6,12 +6,13 @@ import { Check, X } from "lucide-react";
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
+  containerClassNames?: string;
   hasError?: boolean;
   isValid?: boolean;
   withIconBefore?: boolean;
   withIconAfter?: boolean;
-  IconBefore?: JSX.Element;
-  IconAfter?: JSX.Element;
+  IconBefore?: React.ElementType;
+  IconAfter?: React.ElementType;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -25,20 +26,23 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       withIconAfter,
       IconBefore,
       IconAfter,
+      containerClassNames,
       ...props
     },
     ref
   ) => {
     return (
-      <div className="relative w-full">
+      <div className={clsx("relative w-full", containerClassNames)}>
         <div className="relative">
           <div className="absolute top-1/2 left-4 -translate-y-1/2 flex gap-2">
-            {withIconBefore && IconBefore}
+            {withIconBefore && IconBefore && (
+              <IconBefore className="text-gray-500 " />
+            )}
           </div>
           <input
             placeholder=" "
             className={clsx(
-              "default-input peer block rounded-2xl w-full border-2 border-gray-400 shadow-sm sm:text-sm p-4",
+              "default-input peer block rounded-2xl w-full border-2 border-gray-400 shadow-sm sm:text-sm p-4 py-3",
               "disabled:cursor-not-allowed disabled:opacity-50",
               "focus:border-blue-700",
               { "!pl-10": withIconBefore }
@@ -59,7 +63,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           </label>{" "}
           <div className="absolute top-1/2 right-4 -translate-y-1/2 flex gap-2">
             {!withIconAfter && isValid && <Check className="text-green-600" />}
-            {withIconAfter && IconAfter}
+            {withIconAfter && IconAfter && (
+              <IconAfter className="text-gray-500" />
+            )}
           </div>
         </div>
       </div>

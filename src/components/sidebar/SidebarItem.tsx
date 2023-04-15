@@ -7,7 +7,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "../common/Accordion";
+} from "@common/Accordion";
 
 interface SidebarItemProps {
   link: string;
@@ -30,21 +30,25 @@ const SidebarItem = ({
   if (!hasChildren) {
     return <NavItem name={name} link={link} Icon={Icon} />;
   }
+
   return (
     <Accordion type="single" collapsible>
       <AccordionItem value="item-1" className={clsx("border-none ")}>
         <AccordionTrigger
           className={clsx(
-            "relative hover:no-underline px-4 pl-6 py-3 font-semibold hover:bg-gray-200 rounded-r-2xl",
+            "relative hover:no-underline px-4 pl-6 !py-3 font-semibold hover:bg-gray-200 rounded-r-2xl",
             { "text-blue-600": isActive },
             "before:absolute before:left-0 before:top-0 before:bottom-0 before:bg-blue-600 before:w-1 before:rounded-r-md"
           )}
         >
-          Overview
+          <div className="flex !justify-start gap-3">
+            <Icon className="w-6 h-6" />
+            <span>Overview</span>
+          </div>
         </AccordionTrigger>
-        <AccordionContent className="py-2">
+        <AccordionContent className="pl-4">
           {navChildren?.map((navChild, idx) => (
-            <NavChild
+            <NavItem
               key={idx}
               name={navChild.name}
               link={navChild.link}
@@ -67,12 +71,13 @@ interface NavItemProps {
 
 const NavItem = ({ name, link, Icon }: NavItemProps) => {
   const isActive = false;
+
   return (
     <Link
       href={link}
       className={clsx(
         { "text-blue-600": isActive },
-        "flex items-center gap-2 py-3 px-5 rounded-r-2xl hover:bg-gray-100 w-full",
+        "flex items-center gap-3 py-3 px-5 rounded-r-2xl hover:bg-gray-100 w-full",
         "relative hover:no-underline px-4 pl-6 py-3 font-semibold hover:bg-gray-200 rounded-r-2xl",
         "hover:before:absolute hover:before:left-0 hover:before:top-0 hover:before:bottom-0 hover:before:bg-blue-600 hover:before:w-1 hover:before:rounded-r-md",
         {
@@ -81,28 +86,9 @@ const NavItem = ({ name, link, Icon }: NavItemProps) => {
         }
       )}
     >
-      <Icon className={clsx("text-gray-500", { "text-blue-600": isActive })} />
-      <p
-        className={clsx(
-          { "text-blue-600": isActive },
-          "font-semibold text-base"
-        )}
-      >
-        {name}
-      </p>
-    </Link>
-  );
-};
-
-const NavChild = ({ name, link, Icon }: NavItemProps) => {
-  const isActive = true;
-
-  return (
-    <Link
-      href={link}
-      className="flex items-center gap-2 py-3 px-5 rounded-2xl hover:bg-gray-200 w-full"
-    >
-      <Icon className={clsx("text-gray-500", { "text-blue-600": isActive })} />
+      <Icon
+        className={clsx("text-gray-500 w-6 h-6", { "text-blue-600": isActive })}
+      />
       <p
         className={clsx(
           { "text-blue-600": isActive },

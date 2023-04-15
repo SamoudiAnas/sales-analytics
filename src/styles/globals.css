@@ -13,7 +13,7 @@
 /* CSS */
 .default-input:focus ~ label,
 .default-input:not(:placeholder-shown) ~ label {
-  transform: translate(0, -160%);
+  transform: translate(0, -150%);
   background-color: white;
   color: #6b7280;
 }
