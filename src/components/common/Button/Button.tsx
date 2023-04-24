@@ -25,10 +25,15 @@ const buttonVariants = cva(
         sm: "px-2 rounded-md",
         lg: " px-8 rounded-md",
       },
+      fullWidth: {
+        true: "w-full",
+        false: "",
+      },
     },
     defaultVariants: {
       variant: "default",
       size: "default",
+      fullWidth: false,
     },
   }
 );
@@ -48,10 +53,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       className,
       variant,
       size,
+      fullWidth,
       children,
       withIcon,
       Icon,
-      isLoading = true,
+      isLoading,
       ...props
     },
     ref

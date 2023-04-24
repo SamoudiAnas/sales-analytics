@@ -1,4 +1,3 @@
-import React from "react";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -12,12 +11,12 @@ import {
   AvatarImage,
   AvatarFallback,
 } from "@/components/common/Avatar";
+import { Input } from "@common/Input";
 import { BellIcon, LogOutIcon, SearchIcon, SettingsIcon } from "lucide-react";
-import { Input } from "../common/Input";
 
 export default function Header() {
   return (
-    <div className="flex justify-between items-center p-8 px-16">
+    <div className="flex justify-between items-center p-8 px-16 pt-6">
       <h1 className="text-2xl font-bold">Overview</h1>
       <Input
         label="Search"

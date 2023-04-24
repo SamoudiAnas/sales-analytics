@@ -42,8 +42,8 @@ const SidebarItem = ({
           )}
         >
           <div className="flex !justify-start gap-3">
-            <Icon className="w-6 h-6" />
-            <span>Overview</span>
+            <Icon className="text-grey w-6 h-6" />
+            <span>{name}</span>
           </div>
         </AccordionTrigger>
         <AccordionContent className="pl-4">
@@ -87,7 +87,7 @@ const NavItem = ({ name, link, Icon }: NavItemProps) => {
       )}
     >
       <Icon
-        className={clsx("text-gray-500 w-6 h-6", { "text-blue-600": isActive })}
+        className={clsx("text-grey w-6 h-6", { "text-blue-600": isActive })}
       />
       <p
         className={clsx(

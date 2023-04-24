@@ -12,6 +12,11 @@ module.exports = {
       sans: ["'DM Sans'", "'sans-serif'"],
     },
     extend: {
+      colors: {
+        grey: "#979797",
+        mainblue: "#0052CC",
+        black: "#171717",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

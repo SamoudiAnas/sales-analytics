@@ -18,7 +18,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "@root/*": ["./*"],
-      "@common/*": ["src/components/common/*"],
+      "@common/*": ["./src/components/common/*"],
       "@pages/*": ["./src/components/pages/*"],
       "@icons/*": ["./public/assets/icons/*"]
     }
