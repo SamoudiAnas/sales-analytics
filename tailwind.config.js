@@ -1,21 +1,21 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx}",
-    "./src/components/**/*.{js,ts,jsx,tsx}",
-    "./src/app/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./src/**/*.{js,ts,jsx,tsx}"],
   darkMode: "class",
 
   theme: {
     fontFamily: {
       sans: ["'DM Sans'", "'sans-serif'"],
     },
+
     extend: {
       colors: {
         grey: "#979797",
         mainblue: "#0052CC",
+        danger: "#",
         black: "#171717",
+        "grey-100": "#8F92A1",
+        "red-100": "#DE350B",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

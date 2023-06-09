@@ -5,7 +5,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@common/Select";
-import SidebarLayout from "@/components/layout/SidebarLayout";
+import SidebarLayout from "@/layouts/SidebarLayout";
 
 export default function Home() {
   return (

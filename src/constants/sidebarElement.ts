@@ -1,4 +1,3 @@
-import { TokensIcon } from "@radix-ui/react-icons";
 import {
   CalendarIcon,
   LandmarkIcon,
@@ -6,6 +5,7 @@ import {
   TableIcon,
 } from "lucide-react";
 import { PhoneCall } from "lucide-react";
+import { TokensIcon } from "@radix-ui/react-icons";
 import { MdOutlineLeaderboard } from "react-icons/md";
 
 type SidebarItem = {

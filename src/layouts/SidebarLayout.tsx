@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import React from "react";
-import Sidebar from "../sidebar/Sidebar";
-import Header from "./Header";
+import Sidebar from "@/components/sidebar/Sidebar";
+import Header from "@/components/layout/Header";
 
 interface SidebarLayoutProps {
   children: React.ReactNode;

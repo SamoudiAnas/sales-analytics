@@ -44,8 +44,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             className={clsx(
               "default-input peer block rounded-2xl w-full border-2 border-gray-400 shadow-sm sm:text-sm p-4 py-3",
               "disabled:cursor-not-allowed disabled:opacity-50",
-              "focus:border-blue-700",
-              { "!pl-10": withIconBefore }
+              { "focus:border-blue-700": !hasError },
+              { "!pl-10": withIconBefore },
+              { "border-red-100 focus:border-red-100": hasError }
             )}
             ref={ref}
             {...props}
@@ -53,14 +54,15 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <label
             htmlFor="input"
             className={clsx(
-              "absolute top-1/2 -translate-y-1/2 left-4 block transition-all duration-300 ease-out pointer-events-none text-gray-500 px-2",
-              "peer-focus:text-blue-700",
-              { "text-red-600": hasError },
+              "absolute top-1/2 -translate-y-1/2 left-4",
+              "block transition-all duration-300 ease-out text-gray-500 px-2",
+              "pointer-events-none peer-focus:text-blue-700",
+              { "text-red-100 peer-focus:!text-red-100": hasError },
               { "!left-10": withIconBefore }
             )}
           >
             {label}
-          </label>{" "}
+          </label>
           <div className="absolute top-1/2 right-4 -translate-y-1/2 flex gap-2">
             {!withIconAfter && isValid && <Check className="text-green-600" />}
             {withIconAfter && IconAfter && (
