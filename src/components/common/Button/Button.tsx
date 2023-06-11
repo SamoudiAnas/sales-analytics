@@ -6,7 +6,7 @@ import { Loader } from "../Loader";
 
 const buttonVariants = cva(
   [
-    "inline-flex items-center gap-2 justify-center font-medium transition-colors ",
+    "inline-flex items-center gap-2 justify-center font-medium transition-colors min-h-[3rem]",
     "focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 dark:focus:ring-offset-slate-900",
     "dark:hover:bg-slate-800 dark:hover:text-slate-100 disabled:opacity-50 dark:focus:ring-slate-400 ",
     "disabled:pointer-events-none data-[state=open]:bg-slate-100 dark:data-[state=open]:bg-slate-800",
@@ -89,7 +89,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...rest}
       >
         {!isLoading && withIcon && Icon}
-        {isLoading && <Loader />}
+        {isLoading && <Loader className="text-white" />}
         {children}
       </button>
     );

@@ -1,39 +1,39 @@
 import LogoIcon from "@icons/logo.svg";
+import { CheckIcon } from "@radix-ui/react-icons";
 import GoogleLogoIcon from "@icons/google-logo.svg";
 
 import { Checkbox } from "@/components/common/Checkbox";
 import { Button } from "@/components/common/Button";
 import { Input } from "@/components/common/Input";
 
+import { toast } from "@/hooks/useToast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { SignUpForm, signUpFormSchema } from "@/types/account";
 
 import Link from "next/link";
 import { useState } from "react";
-import { createUser, signInWithGoogle } from "@/utils/auth";
-import { getErrorMessage } from "@/constants/firebaseErrors";
-import { toast } from "@/hooks/useToast";
-import { CheckIcon } from "@radix-ui/react-icons";
-import { appRoutes } from "@/constants/appRoutes";
+import { signIn, signInWithGoogle } from "@/utils/auth";
 
-const CreateAccountContent = () => {
+import { appRoutes } from "@/constants/appRoutes";
+import { getErrorMessage } from "@/constants/firebaseErrors";
+import { SignInForm, signInFormSchema } from "@/types/account";
+
+const LoginContent = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const {
     watch,
     register,
-    setValue,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignUpForm>({
-    resolver: zodResolver(signUpFormSchema),
+  } = useForm<SignInForm>({
+    resolver: zodResolver(signInFormSchema),
   });
 
-  const onSubmit: SubmitHandler<SignUpForm> = async (data) => {
+  const onSubmit: SubmitHandler<SignInForm> = async (data) => {
     setIsLoading(true);
 
-    await createUser(data)
+    await signIn(data.email, data.password)
       .then(() => {
         setIsLoading(false);
       })
@@ -63,31 +63,16 @@ const CreateAccountContent = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="w-full h-full max-w-md shadow-2xl bg-white py-12 px-4 lg:px-8 rounded-[3rem]"
       >
-        <h1 className="text-center text-2xl font-bold mb-2">Getting Started</h1>
+        <h1 className="text-center text-2xl font-bold mb-2">
+          Let&apos;s Sign You In
+        </h1>
         <p className="text-center text-sm text-grey-100 mb-8">
-          Create an account to continue!
+          Welcome back, you&apos;ve been missed!
         </p>
 
         <div className="mb-4">
           <Input
-            id="name"
-            label="Your Name"
-            defaultValue=""
-            hasError={!!errors.name}
-            withIconAfter={!errors.name && watch("name") != ""}
-            IconAfter={<CheckIcon className="w-6 h-6 text-green-700" />}
-            {...register("name")}
-          />
-          {errors.name && (
-            <p className="text-danger text-sm text-red-100 mt-2 pl-4">
-              {errors.name.message}
-            </p>
-          )}
-        </div>
-        <div className="mb-4">
-          <Input
             id="email"
-            type="email"
             label="Your Email"
             defaultValue=""
             hasError={!!errors.email}
@@ -117,50 +102,28 @@ const CreateAccountContent = () => {
             </p>
           )}
         </div>
-        <div className="mb-4">
-          <Input
-            id="c_password"
-            type="password"
-            label="Confirm Password"
-            defaultValue=""
-            hasError={!!errors.confirmPassword}
-            {...register("confirmPassword")}
-          />
-          {errors.confirmPassword && (
-            <p className="text-danger text-sm text-red-100 mt-2 pl-4">
-              {errors.confirmPassword.message}
-            </p>
-          )}
-        </div>
 
-        <div className="mb-6">
+        <div className="flex justify-between items-center mb-6">
           <div className="flex gap-2 ">
             <Checkbox
-              id="agreement"
+              id="remember_me"
+              name="remember_me"
               className="mt-1"
-              hasError={!!errors.agreement}
               onCheckedChange={(checked) => {
-                if (checked !== "indeterminate" && checked) {
-                  setValue("agreement", checked);
-                }
+                //
               }}
-              {...register("agreement")}
             />
-            <label htmlFor="agreement" className="text-grey-100">
-              By creating an account, you agree to our{" "}
-              <Link
-                href={appRoutes.termsAndConditions}
-                className="text-mainblue font-semibold"
-              >
-                Terms and Conditions
-              </Link>
+            <label htmlFor="remember_me" className="text-grey-100">
+              Remember Me
             </label>
           </div>
-          {errors.agreement && (
-            <p className="text-danger text-sm text-red-100 mt-2 pl-4">
-              {errors.agreement.message}
-            </p>
-          )}
+
+          <Link
+            href={appRoutes.forgotPassword}
+            className="text-mainblue font-semibold"
+          >
+            Forgot Password
+          </Link>
         </div>
 
         <Button
@@ -169,7 +132,7 @@ const CreateAccountContent = () => {
           rounded="inputSize"
           className="w-full"
         >
-          {!isLoading ? "Register" : ""}
+          {!isLoading ? "Login" : ""}
         </Button>
 
         <p className="text-gray-500 text-center font-bold my-6">OR</p>
@@ -186,9 +149,9 @@ const CreateAccountContent = () => {
         </Button>
 
         <p className="text-grey-100 text-center mt-6">
-          Already have an account?{" "}
-          <Link href={appRoutes.signIn} className="text-mainblue font-semibold">
-            Sign in
+          Don't have an account?{" "}
+          <Link href={appRoutes.signUp} className="text-mainblue font-semibold">
+            Sign Up
           </Link>
         </p>
       </form>
@@ -196,4 +159,4 @@ const CreateAccountContent = () => {
   );
 };
 
-export default CreateAccountContent;
+export default LoginContent;

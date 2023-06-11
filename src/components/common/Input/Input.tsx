@@ -12,7 +12,7 @@ export interface InputProps
   withIconBefore?: boolean;
   withIconAfter?: boolean;
   IconBefore?: React.ElementType;
-  IconAfter?: React.ElementType;
+  IconAfter?: React.ReactNode;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -40,6 +40,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             )}
           </div>
           <input
+            id={`${props.id}-input`}
             placeholder=" "
             className={clsx(
               "default-input peer block rounded-2xl w-full border-2 border-gray-400 shadow-sm sm:text-sm p-4 py-3",
@@ -52,7 +53,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             {...props}
           />
           <label
-            htmlFor="input"
+            id={`${props.id}-label`}
+            htmlFor={`${props.id}-input`}
             className={clsx(
               "absolute top-1/2 -translate-y-1/2 left-4",
               "block transition-all duration-300 ease-out text-gray-500 px-2",
@@ -65,9 +67,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           </label>
           <div className="absolute top-1/2 right-4 -translate-y-1/2 flex gap-2">
             {!withIconAfter && isValid && <Check className="text-green-600" />}
-            {withIconAfter && IconAfter && (
-              <IconAfter className="text-gray-500" />
-            )}
+            {withIconAfter && IconAfter && IconAfter}
           </div>
         </div>
       </div>

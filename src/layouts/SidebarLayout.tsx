@@ -11,6 +11,7 @@ const SidebarLayout: NextPage<SidebarLayoutProps> = ({ children }) => {
   return (
     <div className="flex">
       <Sidebar />
+
       <div className="flex-grow w-full">
         <Header />
         {children}
