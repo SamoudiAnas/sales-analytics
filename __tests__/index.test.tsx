@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import { Button } from "@/components/common/Button";
+import { Button } from "@common/Button";
 
 test("renders button with correct text", () => {
   render(<Button>Hello, world!</Button>);

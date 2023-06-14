@@ -5,12 +5,8 @@ import {
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-} from "@/components/common/DropdownMenu";
-import {
-  Avatar,
-  AvatarImage,
-  AvatarFallback,
-} from "@/components/common/Avatar";
+} from "@common/DropdownMenu";
+import { Avatar, AvatarImage, AvatarFallback } from "@common/Avatar";
 import { Input } from "@common/Input";
 import { BellIcon, LogOutIcon, SearchIcon, SettingsIcon } from "lucide-react";
 
@@ -22,7 +18,7 @@ export default function Header() {
         label="Search"
         containerClassNames="max-w-sm"
         withIconAfter={true}
-        IconAfter={SearchIcon}
+        IconAfter={<SearchIcon className="text-gray-500" />}
       />
 
       <div className="flex items-center gap-8">

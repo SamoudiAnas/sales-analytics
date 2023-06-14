@@ -15,6 +15,7 @@ const Select2 = React.forwardRef<
 >(({ children, ...props }, ref) => (
   <SelectPrimitive.Root {...props}>{children}</SelectPrimitive.Root>
 ));
+Select2.displayName = "Select2";
 
 const SelectGroup = SelectPrimitive.Group;
 

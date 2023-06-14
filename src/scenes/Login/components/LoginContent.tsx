@@ -109,9 +109,7 @@ const LoginContent = () => {
               id="remember_me"
               name="remember_me"
               className="mt-1"
-              onCheckedChange={(checked) => {
-                //
-              }}
+              onCheckedChange={(checked) => {}}
             />
             <label htmlFor="remember_me" className="text-grey-100">
               Remember Me
@@ -149,7 +147,7 @@ const LoginContent = () => {
         </Button>
 
         <p className="text-grey-100 text-center mt-6">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link href={appRoutes.signUp} className="text-mainblue font-semibold">
             Sign Up
           </Link>

@@ -7,9 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest",
-    "test:ci": "jest --ci",
-    "test:watch": "jest --watch"
+    "test": "jest --env=jsdom",
+    "test:ci": "jest --ci --env=jsdom",
+    "test:watch": "jest --watch --env=jsdom"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.1.0",
@@ -51,9 +51,16 @@
     "@svgr/webpack": "^7.0.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
+    "@types/jest": "^29.5.2",
     "babel-jest": "^29.5.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-react": "^7.32.2",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^29.5.0",
+    "jest-css-modules": "^2.1.0",
     "jest-environment-jsdom": "^29.5.0",
+    "react-test-renderer": "^18.2.0",
     "tsconfig-paths": "^4.2.0"
   }
 }

@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import React from "react";
-import Sidebar from "@/components/sidebar/Sidebar";
+import Sidebar from "@/components/layout/sidebar/Sidebar";
 import Header from "@/components/layout/Header";
 
 interface SidebarLayoutProps {

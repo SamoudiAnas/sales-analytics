@@ -1,21 +1,23 @@
 import LogoIcon from "@icons/logo.svg";
+import { CheckIcon } from "@radix-ui/react-icons";
 import GoogleLogoIcon from "@icons/google-logo.svg";
 
 import { Checkbox } from "@/components/common/Checkbox";
 import { Button } from "@/components/common/Button";
 import { Input } from "@/components/common/Input";
 
+import { toast } from "@/hooks/useToast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
+
+import { createUser, signInWithGoogle } from "@/utils/auth";
 import { SignUpForm, signUpFormSchema } from "@/types/account";
 
 import Link from "next/link";
 import { useState } from "react";
-import { createUser, signInWithGoogle } from "@/utils/auth";
-import { getErrorMessage } from "@/constants/firebaseErrors";
-import { toast } from "@/hooks/useToast";
-import { CheckIcon } from "@radix-ui/react-icons";
+
 import { appRoutes } from "@/constants/appRoutes";
+import { getErrorMessage } from "@/constants/firebaseErrors";
 
 const CreateAccountContent = () => {
   const [isLoading, setIsLoading] = useState(false);
