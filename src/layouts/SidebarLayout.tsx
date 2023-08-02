@@ -12,7 +12,7 @@ const SidebarLayout: NextPage<SidebarLayoutProps> = ({ children }) => {
     <div className="flex">
       <Sidebar />
 
-      <div className="flex-grow w-full">
+      <div className="flex-grow w-full pl-64">
         <Header />
         {children}
       </div>

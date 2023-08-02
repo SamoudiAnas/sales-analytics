@@ -12,7 +12,7 @@ import { Button } from "@common/Button";
 
 const Sidebar = () => {
   return (
-    <div className="w-64 h-full min-h-screen bg-white flex flex-col">
+    <div className="fixed w-64 h-full min-h-screen bg-white flex flex-col">
       <div className="flex items-center gap-4 pl-6 pt-8 mb-16">
         <LogoIcon className="w-8 h-8" />
         <h1 className="text-blue-800 text-xl font-semibold">Sales Analytics</h1>

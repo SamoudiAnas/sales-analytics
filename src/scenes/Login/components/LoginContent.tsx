@@ -12,10 +12,11 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 import Link from "next/link";
 import { useState } from "react";
+
+import { getErrorMessage } from "@/utils/error";
 import { signIn, signInWithGoogle } from "@/utils/auth";
 
 import { appRoutes } from "@/constants/appRoutes";
-import { getErrorMessage } from "@/constants/firebaseErrors";
 import { SignInForm, signInFormSchema } from "@/types/account";
 
 const LoginContent = () => {

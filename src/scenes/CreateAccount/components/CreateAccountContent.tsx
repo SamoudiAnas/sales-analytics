@@ -17,7 +17,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 import { appRoutes } from "@/constants/appRoutes";
-import { getErrorMessage } from "@/constants/firebaseErrors";
+import { getErrorMessage } from "@/utils/error";
 
 const CreateAccountContent = () => {
   const [isLoading, setIsLoading] = useState(false);

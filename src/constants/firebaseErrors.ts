@@ -1,3 +1,5 @@
+export const DEFAULT_ERROR_MSG = "An error has occured!";
+
 export const firebaseErrors = [
   {
     code: "auth/email-already-in-use",
@@ -5,9 +7,3 @@ export const firebaseErrors = [
   },
 ];
 
-export const getErrorMessage = (code: string) => {
-  return (
-    firebaseErrors.find((error) => error.code === code)?.message ??
-    "An error has occured!"
-  );
-};
