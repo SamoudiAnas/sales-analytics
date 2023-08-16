@@ -13,6 +13,7 @@ import {
 } from "chart.js";
 import { colors } from "@/constants/colors";
 import { DEFAULT_FONT_FAMILY } from "@/constants/globals";
+import shadowPlugin from "@/plugins/chart-shadow";
 
 ChartJS.register(
   CategoryScale,
@@ -33,6 +34,13 @@ export default function LineChart({ data }: LineChartProps) {
     <Line
       options={{
         responsive: true,
+        elements: {
+          point: {
+            borderWidth: 2,
+            hoverBorderWidth: 2,
+            borderColor: colors.WHITE,
+          },
+        },
 
         plugins: {
           legend: {
@@ -51,9 +59,10 @@ export default function LineChart({ data }: LineChartProps) {
           tooltip: {
             boxWidth: 0,
             padding: 16,
+            
+
             usePointStyle: false,
             backgroundColor: colors.LIGHTGREY,
-
 
             titleColor: colors.GREY,
             titleAlign: "center",
@@ -70,9 +79,9 @@ export default function LineChart({ data }: LineChartProps) {
               size: 24,
             },
 
-            xAlign:"center",
-            yAlign:"bottom",
-            
+            xAlign: "center",
+            yAlign: "bottom",
+
             callbacks: {
               beforeLabel: (t) =>
                 `${Intl.NumberFormat("en-US", {
@@ -92,17 +101,21 @@ export default function LineChart({ data }: LineChartProps) {
         },
       }}
       data={data}
-      plugins={[{
-        id: 'customCanvasBackgroundColor',
-        beforeDraw: (chart, args, options) => {
-          const {ctx} = chart;
-          ctx.save();
-          ctx.globalCompositeOperation = 'destination-over';
-          ctx.fillStyle = options.color || '#99ffff';
-          ctx.fillRect(0, 0, chart.width, chart.height);
-          ctx.restore();
-        }
-      }]}
+      plugins={[
+        {
+          //ref:
+          id: "customCanvasBackgroundColor",
+          beforeDraw: (chart, args, options) => {
+            const { ctx } = chart;
+            ctx.save();
+            ctx.globalCompositeOperation = "destination-over";
+            ctx.fillStyle = options.color || "#99ffff";
+            ctx.fillRect(0, 0, chart.width, chart.height);
+            ctx.restore();
+          },
+        },
+        shadowPlugin,
+      ]}
     />
   );
 }
