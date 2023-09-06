@@ -1,13 +1,25 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { SliceCaseReducers, createSlice } from "@reduxjs/toolkit";
 
-export const userSlice = createSlice({
+export interface UserState {
+  isLoggedIn: boolean;
+  user: {
+    uid: string;
+    email: string;
+    authority: "manager" | "cashier" | "admin";
+  } | null;
+}
+
+export const userSlice = createSlice<UserState, SliceCaseReducers<UserState>>({
   name: "user",
-  initialValue: { name: "", email: "" },
-  reducers: {
-    login: (state, action) => {
-      state.value = action.payload;
+  initialState: {
+    isLoggedIn: false,
+    user: {
+      uid: "",
+      email: "",
+      authority: "cashier",
     },
   },
+  reducers: {},
 });
 
 export default userSlice.reducer;

@@ -14,7 +14,7 @@ import { createUser, signInWithGoogle } from "@/utils/auth";
 import { SignUpForm, signUpFormSchema } from "@/types/account";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { appRoutes } from "@/constants/appRoutes";
 import { getErrorMessage } from "@/utils/error";
@@ -24,10 +24,13 @@ const CreateAccountContent = () => {
 
   const {
     watch,
+    trigger,
     register,
+    getValues,
     setValue,
     handleSubmit,
-    formState: { errors },
+    getFieldState,
+    formState: { errors, dirtyFields },
   } = useForm<SignUpForm>({
     resolver: zodResolver(signUpFormSchema),
   });
@@ -76,7 +79,7 @@ const CreateAccountContent = () => {
             label="Your Name"
             defaultValue=""
             hasError={!!errors.name}
-            withIconAfter={!errors.name && watch("name") != ""}
+            withIconAfter={!!errors.name && watch("name") !== ""}
             IconAfter={<CheckIcon className="w-6 h-6 text-green-700" />}
             {...register("name")}
           />
